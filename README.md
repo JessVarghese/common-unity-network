@@ -3,8 +3,7 @@
   [![badge](https://img.shields.io/badge/License-MIT-yellow.svg)]((https://opensource.org/licenses/MIT))
   
   ## Description
-
-    The Common Unity Network is a social application using a NoSQL database where you can create users, add friends, share thoughts and reactions.
+  The Common Unity Network is a social application using a NoSQL database where you can create users, add friends, share thoughts and reactions.
 
 
   ## Table of Contents
