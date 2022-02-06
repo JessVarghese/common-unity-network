@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const dateFormat = require('../utils/dateFormat');
 
-const ReactionSchema = new Schema(
+const reactionSchema = new Schema(
     {
       // set custom id to avoid confusion with parent comment _id
       reactionId: {
@@ -13,7 +13,7 @@ const ReactionSchema = new Schema(
         type: String,
         required: true
       },
-      userName: {
+      username: {
         type: String,
         required: true,
       },
@@ -30,12 +30,11 @@ const ReactionSchema = new Schema(
     }
   );
 
-const ThoughtSchema = new Schema(
+const thoughtSchema = new Schema(
     {
       thoughtText: {
         type: String,
         required: true,
-        minLength: 1,
         maxLength: 280
       },
       createdAt: {
@@ -43,16 +42,15 @@ const ThoughtSchema = new Schema(
         default: Date.now,
         get: createdAtVal => dateFormat(createdAtVal)
       },
-      userName: {
+      username: {
         type: String,
         required: true,
       },
-      reactions: [],
+      reactions: [reactionSchema],
      
     },
     {
       toJSON: {
-        virtuals: true,
         getters: true
       },
       // prevents virtuals from creating duplicate of _id as `id`
@@ -61,10 +59,10 @@ const ThoughtSchema = new Schema(
   );
   
   // Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
-  ThoughtSchema.virtual('reactionCount').get(function() {
+  thoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
   });
   
-  const Thought = model('Thought', ThoughtSchema);
+  const Thought = model('Thought', thoughtSchema);
   
   module.exports = Thought;

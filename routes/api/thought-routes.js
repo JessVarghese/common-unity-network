@@ -33,7 +33,7 @@ router
 router
 .route('api/thoughts/:thoughtId/reactions')
 .post(addReaction)
-.delete(deleteReaction)
+.delete(deleteReaction);
 
 
 
